@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MM-Healthcare</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="msg_generic_no_data">No Data to Display</string>
+    <string name="lbl_refresh">Refresh</string>
+    <string name="healthcare_heading">Healthcare Heading</string>
+    <string name="monday_2018">Monday 2018</string>
+    <string name="desc">အခ်ိန္အၾကာႀကီး အထုိင္မ်ားတဲ႔ ပံုစံက က်န္းမာေရး အတြက္ အႏၱရာယ္ ရွိပါတယ္ လို႔ ေလ႔လာမႈ အမ်ားအျပား အရ သိရပါတယ္။ ယခုအခါ တက္စ္ဆက္တကၠသိုလ္ မွ သုေတသန ျပဳ သူေတြ က တစ္ေန႔ ကို ေျခာက္နာရီ ခန္႔ မတ္တပ္ ရပ္ေနတာက ခႏၶာကိုယ္ မွ အဆီ သံုးပံု တစ္ပံု ခန္႔ ေလ်ာ႔က်ႏိုင္တယ္လို႔ ထုတ္ေဖာ္လုိက္ပ</string>
+    <string name="kevin">Kevin</string>
+
+</resources>
