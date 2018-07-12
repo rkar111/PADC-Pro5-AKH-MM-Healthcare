@@ -1,78 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_medium"
-    app:cardElevation="@dimen/margin_small">
+    app:cardElevation="@dimen/margin_small">-->
 
-    <RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_medium">
+
+    <org.mmtextview.components.MMTextView
+        android:id="@+id/tvHealthcareHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/healthcare_heading"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_heading_1x"
+        android:textStyle="bold" />
+
+    <org.mmtextview.components.MMTextView
+        android:id="@+id/tvPublishDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/tvHealthcareHeading"
+        android:layout_below="@id/tvHealthcareHeading"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:text="@string/monday_2018"
+        android:textColor="@color/secondary_text" />
+
+    <TextView
+        android:id="@+id/tvInfoType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ivHealthcare"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_toEndOf="@id/tvPublishDate"
+        android:background="@drawable/accent_round_coner"
+        android:padding="2dp"
+        android:text="@string/article"
+        android:textColor="@color/accent" />
+
+    <ImageView
+        android:id="@+id/ivHealthcare"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/healthcare_image_height"
+        android:layout_below="@id/tvPublishDate"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/healthcare_placeholder" />
 
-        <org.mmtextview.components.MMTextView
-            android:id="@+id/tvHealthcareHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_medium"
-            android:text="@string/healthcare_heading"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_regular_3x" />
+    <org.mmtextview.components.MMTextView
+        android:id="@+id/tvShortDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAuthorName"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        android:layout_toEndOf="@id/ivAuthor"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.3"
+        android:maxLines="4"
+        android:padding="@dimen/margin_medium"
+        android:text="@string/desc"
+        android:textColor="@color/primary_text" />
 
-        <org.mmtextview.components.MMTextView
-            android:id="@+id/tvPublishDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/tvHealthcareHeading"
-            android:layout_below="@id/tvHealthcareHeading"
-            android:layout_marginBottom="@dimen/margin_medium"
-            android:text="@string/monday_2018"
-            android:textColor="@color/secondary_text" />
+    <ImageView
+        android:id="@+id/ivAuthor"
+        android:layout_width="@dimen/author_image_size"
+        android:layout_height="@dimen/author_image_size"
+        android:layout_alignStart="@id/tvHealthcareHeading"
+        android:layout_below="@id/ivHealthcare"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:scaleType="centerCrop"
+        android:src="@drawable/doctor" />
 
-        <ImageView
-            android:id="@+id/ivHealthcare"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/healthcare_image_height"
-            android:layout_below="@id/tvPublishDate"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/healthcare_placeholder" />
+    <org.mmtextview.components.MMTextView
+        android:id="@+id/tvAuthorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivHealthcare"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_toEndOf="@id/ivAuthor"
+        android:text="@string/kevin"
+        android:textAlignment="textEnd"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_small" />
 
-        <org.mmtextview.components.MMTextView
-            android:id="@+id/tvShortDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ivAuthor"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:ellipsize="end"
-            android:lineSpacingMultiplier="1.2"
-            android:maxLines="4"
-            android:padding="@dimen/margin_medium"
-            android:text="@string/desc"
-            android:textColor="@color/primary_text" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/tvShortDesc"
+        android:background="@color/divider" />
 
-        <ImageView
-            android:id="@+id/ivAuthor"
-            android:layout_width="@dimen/author_image_size"
-            android:layout_height="@dimen/author_image_size"
-            android:layout_below="@id/ivHealthcare"
-            android:layout_marginLeft="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:scaleType="centerCrop"
-            android:src="@drawable/doctor" />
+</RelativeLayout>
 
-        <org.mmtextview.components.MMTextView
-            android:id="@+id/tvAuthorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/ivAuthor"
-            android:layout_below="@id/ivHealthcare"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_toRightOf="@id/ivAuthor"
-            android:text="@string/kevin"
-            android:textColor="@color/primary_text" />
-
-    </RelativeLayout>
-
-</android.support.v7.widget.CardView>
+    <!--</android.support.v7.widget.CardView>-->
 

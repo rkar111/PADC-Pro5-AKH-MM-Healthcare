@@ -29,6 +29,13 @@ class ItemHealthcareViewHolder(itemView: View,
             itemView.ivHealthcare!!.visibility = View.GONE
         }
         itemView.tvShortDesc!!.text = data.shortDescription
+        if (data.infoType != null) {
+            itemView.tvInfoType.visibility = View.VISIBLE
+            itemView.tvInfoType!!.text = data.infoType
+        } else {
+            itemView.tvInfoType.visibility = View.GONE
+        }
+
     }
 
     override fun onClick(v: View?) {

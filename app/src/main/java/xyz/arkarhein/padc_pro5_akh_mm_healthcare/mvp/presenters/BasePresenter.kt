@@ -2,6 +2,7 @@ package xyz.arkarhein.padc_pro5_akh_mm_healthcare.mvp.presenters
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.content.Context
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.mvp.views.BaseView
 
 abstract class BasePresenter<T : BaseView> : ViewModel() {

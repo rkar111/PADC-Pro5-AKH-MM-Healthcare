@@ -33,7 +33,7 @@
     <dimen name="text_big_2x">60sp</dimen>
     <dimen name="text_big_3x">80sp</dimen>
     <dimen name="healthcare_image_height">220dp</dimen>
-    <dimen name="author_image_size">50dp</dimen>
+    <dimen name="author_image_size">30dp</dimen>
 
     <!-- App specific values -->
 

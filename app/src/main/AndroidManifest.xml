@@ -3,6 +3,7 @@
     package="xyz.arkarhein.padc_pro5_akh_mm_healthcare">
 
     <application
+        android:name=".MMHealthcareApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

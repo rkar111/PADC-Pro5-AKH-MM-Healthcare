@@ -9,4 +9,9 @@ class MMHealthcareApp : Application() {
         const val TAG = "MMHealthcare"
         const val ACCESS_TOKEN = "b002c7e1a528b7cb460933fc2875e916"
     }
+
+    override fun onCreate() {
+        super.onCreate()
+        HealthcareModel.initHealthcareModel(applicationContext)
+    }
 }

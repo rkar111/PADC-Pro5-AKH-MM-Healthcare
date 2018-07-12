@@ -2,6 +2,7 @@ package xyz.arkarhein.padc_pro5_akh_mm_healthcare.data.models
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -46,6 +47,7 @@ class HealthcareModel(context: Context) : BaseModel(context) {
 
                     override fun onNext(healthcareResponse: GetHealthcareResponse) {
                         if (healthcareResponse.getHealthcareInfo().isNotEmpty()) {
+                            persistHealthcareList(healthcareResponse.getHealthcareInfo())
                             healthcareLD!!.value = (healthcareResponse.getHealthcareInfo())
                         }
                     }
@@ -54,6 +56,13 @@ class HealthcareModel(context: Context) : BaseModel(context) {
 
                     }
                 })
+    }
+
+    private fun persistHealthcareList(healthcareList: List<HealthcareVO>) {
+        mTheDB.healthcareDao().insertHealthcare(healthcareList)
+
+        val insertedHealthcare = mTheDB.healthcareDao().insertHealthcare(healthcareList)
+        Log.d(MMHealthcareApp.TAG, "insertedHealthcareList : ${insertedHealthcare.size}")
     }
 
 }

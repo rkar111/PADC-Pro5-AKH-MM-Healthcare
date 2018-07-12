@@ -1,5 +1,6 @@
 package xyz.arkarhein.padc_pro5_akh_mm_healthcare.activities
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.net.Uri
@@ -33,7 +34,7 @@ class HealthCareListActivity : BaseActivity(), HealthcareListView {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()
             }*/
-        HealthcareModel.initHealthcareModel(applicationContext)
+
         mPresenter = ViewModelProviders.of(this).get(HealthcareListPresenter::class.java)
         mPresenter.initPresenter(this)
 
@@ -63,6 +64,7 @@ class HealthCareListActivity : BaseActivity(), HealthcareListView {
         var builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
         var customTabIntent: CustomTabsIntent = builder.build()
         customTabIntent.launchUrl(applicationContext, Uri.parse(url))
+
     }
 /*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

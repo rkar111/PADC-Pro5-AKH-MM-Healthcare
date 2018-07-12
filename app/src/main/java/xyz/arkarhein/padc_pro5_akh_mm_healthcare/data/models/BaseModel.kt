@@ -7,11 +7,13 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.network.HealthcareApi
+import xyz.arkarhein.padc_pro5_akh_mm_healthcare.persistence.AppDatabase
 import java.util.concurrent.TimeUnit
 
 abstract class BaseModel protected constructor(context: Context) {
 
     protected var mTheApi: HealthcareApi
+    protected var mTheDB: AppDatabase
 
     init {
         val okHttpClient = OkHttpClient.Builder()
@@ -28,5 +30,6 @@ abstract class BaseModel protected constructor(context: Context) {
                 .build()
 
         mTheApi = retrofit.create<HealthcareApi>(HealthcareApi::class.java)
+        mTheDB = AppDatabase.getDatabase(context)
     }
 }
