@@ -29,6 +29,11 @@ class HealthCareListActivity : BaseActivity(), HealthcareListView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_healthcare_list)
         setSupportActionBar(toolbar)
+        if (supportActionBar != null) {
+            supportActionBar!!.setTitle(R.string.app_name)
+            supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
 
         /*    fab.setOnClickListener { view ->
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
