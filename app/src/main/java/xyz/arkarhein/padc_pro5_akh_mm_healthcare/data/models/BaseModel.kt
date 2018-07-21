@@ -30,6 +30,7 @@ abstract class BaseModel protected constructor(context: Context) {
                 .build()
 
         mTheApi = retrofit.create<HealthcareApi>(HealthcareApi::class.java)
-        mTheDB = AppDatabase.getDatabase(context)
+        mTheDB = AppDatabase.getDatabase(context
+        )
     }
 }

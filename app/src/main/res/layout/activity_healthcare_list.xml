@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextColor="@color/white_full"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="@color/white_full" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -26,7 +26,8 @@
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          >-->
-    <RelativeLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -42,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <!-- </android.support.v4.widget.SwipeRefreshLayout>-->

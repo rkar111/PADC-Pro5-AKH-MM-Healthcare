@@ -1,5 +1,6 @@
 package xyz.arkarhein.padc_pro5_akh_mm_healthcare.data.models
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.util.Log
@@ -19,7 +20,7 @@ class HealthcareModel(context: Context) : BaseModel(context) {
 
         fun getInstance(): HealthcareModel {
             if (INSTANCE == null) {
-//                throw RuntimeException("HealthcareModel is being invoked before initializing.")
+                throw RuntimeException("HealthcareModel is being invoked before initializing.")
             }
 
             val i = INSTANCE
@@ -32,7 +33,7 @@ class HealthcareModel(context: Context) : BaseModel(context) {
     }
 
 
-    fun startLoadingMMNews(healthcareLD: MutableLiveData<List<HealthcareVO>>?) {
+    fun startLoadingMMNews(errorLD: MutableLiveData<String>?) {
         mTheApi.loadHealthcareInfo(MMHealthcareApp.ACCESS_TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -48,12 +49,13 @@ class HealthcareModel(context: Context) : BaseModel(context) {
                     override fun onNext(healthcareResponse: GetHealthcareResponse) {
                         if (healthcareResponse.getHealthcareInfo().isNotEmpty()) {
                             persistHealthcareList(healthcareResponse.getHealthcareInfo())
-                            healthcareLD!!.value = (healthcareResponse.getHealthcareInfo())
+                        } else {
+                            errorLD!!.value = "No Data could be loaded."
                         }
                     }
 
                     override fun onError(e: Throwable) {
-
+                        errorLD!!.value = e.message
                     }
                 })
     }
@@ -63,6 +65,10 @@ class HealthcareModel(context: Context) : BaseModel(context) {
 
         val insertedHealthcare = mTheDB.healthcareDao().insertHealthcare(healthcareList)
         Log.d(MMHealthcareApp.TAG, "insertedHealthcareList : ${insertedHealthcare.size}")
+    }
+
+    fun getAllHealthcareData(): LiveData<List<HealthcareVO>> {
+        return mTheDB.healthcareDao().getAllHealthcareLiveData()
     }
 
 }

@@ -15,4 +15,7 @@ interface HealthcareDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHealthcare(healthcareVO: List<HealthcareVO>): LongArray
+
+    @Query("SELECT * FROM Healthcare")
+    fun getAllHealthcareLiveData(): LiveData<List<HealthcareVO>>
 }

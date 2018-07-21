@@ -1,6 +1,5 @@
 package xyz.arkarhein.padc_pro5_akh_mm_healthcare.activities
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.net.Uri
@@ -13,7 +12,6 @@ import com.padcmyanmar.mmnews.kotlin.components.SmartScrollListener
 import kotlinx.android.synthetic.main.activity_healthcare_list.*
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.R
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.adapters.HealthcareListAdapter
-import xyz.arkarhein.padc_pro5_akh_mm_healthcare.data.models.HealthcareModel
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.data.vos.HealthcareVO
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.mvp.presenters.HealthcareListPresenter
 import xyz.arkarhein.padc_pro5_akh_mm_healthcare.mvp.views.HealthcareListView
@@ -55,35 +53,46 @@ class HealthCareListActivity : BaseActivity(), HealthcareListView {
         rvNews.addOnScrollListener(mSmartScrollListener)
         rvNews.layoutManager = LinearLayoutManager(applicationContext)
         rvNews.adapter = mAdapter
+        swipeRefreshLayout.setOnRefreshListener {
+            mPresenter.forceRefresh()
+            swipeRefreshLayout.isRefreshing = false
+
+        }
 
         mPresenter.getHealthcareLD().observe(this, Observer<List<HealthcareVO>> { healthcareList ->
-            displaytHealthcareList(healthcareList!!)
+            displayHealthcareList(healthcareList!!)
         })
+        mPresenter.mErrorLD.observe(this, this)
     }
 
-    fun displaytHealthcareList(healthcareList: List<HealthcareVO>) {
+    fun displayHealthcareList(healthcareList: List<HealthcareVO>) {
         mAdapter.appendNewData(healthcareList)
     }
 
     override fun launchHealthcareUrl(url: String) {
-        var builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
-        var customTabIntent: CustomTabsIntent = builder.build()
+        val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
+        val customTabIntent: CustomTabsIntent = builder.build()
         customTabIntent.launchUrl(applicationContext, Uri.parse(url))
 
     }
-/*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
+
+    override fun displayErrorMsg(errorMsg: String?) {
+        Snackbar.make(rvNews, errorMsg!!, Snackbar.LENGTH_INDEFINITE).show()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
+/*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return true
+}
+
+override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    return when (item.itemId) {
+        R.id.action_settings -> true
+        else -> super.onOptionsItemSelected(item)
+    }
+}*/
 }
